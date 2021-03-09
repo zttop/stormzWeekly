@@ -1,12 +1,14 @@
 
+### html2canvas 导出 固定格式，动态内容的周报图片
+
 ## Build Setup
 
 ```bash
 # 克隆项目
-git clone https://github.com/PanJiaChen/vue-admin-template.git
+git clone git@github.com:zttop/stormzWeekly.git
 
 # 进入项目目录
-cd vue-admin-template
+cd stormzWeekly
 
 # 安装依赖
 npm install
@@ -19,11 +21,6 @@ npm run dev
 ```
 
 浏览器访问 [http://localhost:9528](http://localhost:9528)
-
-## 测试数据
-```
-根目录下的test.xlsx，导入即可
-```
 
 ## 发布
 
