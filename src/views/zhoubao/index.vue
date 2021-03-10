@@ -150,8 +150,8 @@
                 </div>
               </div>
 
-              <div v-for="(dynItem,index) in data.dynamic" :key="index" class="content-detail">
-                <div class="item-title">{{ dynItem.title }}</div>
+              <div class="content-detail content-all">
+                <div v-for="(dynItem,index) in data.dynamic" :key="index" class="item-title">{{ dynItem.title }}</div>
               </div>
 
             </div>
@@ -341,7 +341,7 @@ export default {
       const ele = document.getElementsByClassName('poster-item')[0]
       const scaleCanvas = document.createElement('canvas')
       const context = scaleCanvas.getContext('2d')
-      const scale = 1
+      const scale = 2
       const width = ele.clientWidth
       const height = ele.clientHeight
 
@@ -378,10 +378,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-  font-family: mengnazongyi;
-  src: url('../../assets/font/mengnazongyi.otf');
-}
 @font-face {
   font-family: ruizizongyi;
   src: url('../../assets/font/ruizizongyi.ttf');
@@ -486,10 +482,10 @@ export default {
   .title-item {
     width: 100%;
     text-align: center;
-    font-family: mengnazongyi,ruizizongyi;
+    font-family: ruizizongyi;
   }
   .title-count {
-    font-family: mengnazongyi,ruizizongyi;
+    font-family: ruizizongyi;
     display: inline-block;
     margin-left: 5px;
     margin-right: 5px;
