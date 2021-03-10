@@ -188,7 +188,7 @@
             <div class="share-containter">
               <div class="share-title">扫描左侧二维码查看完整内容</div>
               <div class="share-line" />
-              <div class="share-desc">@<span class="author">帅张和他的朋友们</span> {{ data.countNum }} 期周报</div>
+              <div class="share-desc">@<span class="author">帅张和他的朋友们</span> {{ data.countNum.toString().padStart(2, '0') }} 期周报</div>
               <div class="share-desc">— 星球内容运营组「周报小分队」整理</div>
             </div>
           </div>
