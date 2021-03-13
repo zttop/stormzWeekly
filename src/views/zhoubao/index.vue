@@ -379,8 +379,8 @@ export default {
 
 <style lang="scss" scoped>
 @font-face {
-  font-family: ruizizongyi;
-  src: url('../../assets/font/ruizizongyi.ttf');
+  font-family: huxiaobo;
+  src: url('../../assets/font/huxiaobo.otf');
 }
 @font-face {
   font-family: siyuannormal;
@@ -481,11 +481,13 @@ export default {
   }
   .title-item {
     width: 100%;
+    font-weight: bold;
     text-align: center;
-    font-family: ruizizongyi;
+    letter-spacing: 1px;
+    font-family: huxiaobo;
   }
   .title-count {
-    font-family: ruizizongyi;
+    font-family: huxiaobo;
     display: inline-block;
     margin-left: 5px;
     margin-right: 5px;
@@ -569,13 +571,17 @@ export default {
   font-family: siyuanbold;
 }
 
+.content .content-detail:nth-of-type(2) .item-title:first-child {
+  margin-top: 20px;
+  color: red;
+}
 .content-detail {
   line-height: 20px;
   letter-spacing: 1px;
   .item-title {
     font-family: siyuanbold;
     font-size: 12px;
-    margin-top: 20px;
+    margin-top: 10px;
   }
   &.content-all .item-title:not(:first-child) {
     margin-top: 6px;
