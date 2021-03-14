@@ -573,7 +573,6 @@ export default {
 
 .content .content-detail:nth-of-type(2) .item-title:first-child {
   margin-top: 20px;
-  color: red;
 }
 .content-detail {
   line-height: 20px;
@@ -581,7 +580,8 @@ export default {
   .item-title {
     font-family: siyuanbold;
     font-size: 12px;
-    margin-top: 10px;
+    margin-top: 13px;
+    color: #222;
   }
   &.content-all .item-title:not(:first-child) {
     margin-top: 6px;
@@ -591,6 +591,7 @@ export default {
     font-weight: bold;
   }
   .item-sctitle {
+    color: #333;
     font-family: siyuanbold;
     font-size: 11px;
     margin-top: 15px;
@@ -610,10 +611,21 @@ export default {
   .sctitle-detail {
     position: relative;
     z-index: 1;
+    font-size: 12px;
+    line-height: 12px;
+    transform: scale(0.9);
+    display: inline-block;
+    margin-left: -3px;
+    color: #333;
   }
   .item-content {
-    font-size: 11px;
     font-family: siyuannormal;
+    text-align: justify;
+    font-size: 12px;
+    color: #101010;
+    transform: scale(0.9);
+    margin: -10px -17px -8px;
+    line-height: 22px;
   }
 }
 
