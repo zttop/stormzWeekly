@@ -7,19 +7,10 @@
 
           <el-collapse style="width: 100%">
             <el-collapse-item title="嘉宾分享" name="1">
-              <el-tabs v-model="activeGuest" type="card" editable @edit="handleGuestTabs">
-                <el-tab-pane
-                  v-for="(item) in data.guest"
-                  :key="item.ID"
-                  :label="item.title.substring(0,5)"
-                  :name="item.ID"
-                >
-                  <div class="tooltip-item"><span style="width: 60px">嘉宾名：</span><el-input v-model="item.name" style="width: 200px; flex: 1" size="mini" /></div>
-                  <div class="tooltip-item"><span style="width: 60px">标题：</span><el-input v-model="item.title" style="width: 200px; flex: 1" type="textarea" size="mini" /></div>
-                  <div class="tooltip-item"><span style="width: 60px">寄语：</span><el-input v-model="item.content1" style="width: 200px; flex: 1" type="textarea" size="mini" /></div>
-                  <div class="tooltip-item"><span style="width: 60px">精选：</span><el-input v-model="item.content2" style="width: 200px; flex: 1" type="textarea" size="mini" /></div>
-                </el-tab-pane>
-              </el-tabs>
+              <div class="tooltip-item"><span style="width: 60px">嘉宾名：</span><el-input v-model="data.guest.name" style="width: 200px; flex: 1" size="mini" /></div>
+              <div class="tooltip-item"><span style="width: 60px">标题：</span><el-input v-model="data.guest.title" style="width: 200px; flex: 1" type="textarea" size="mini" /></div>
+              <div class="tooltip-item"><span style="width: 60px">寄语：</span><el-input v-model="data.guest.content1" style="width: 200px; flex: 1" type="textarea" size="mini" /></div>
+              <div class="tooltip-item"><span style="width: 60px">精选：</span><el-input v-model="data.guest.content2" style="width: 200px; flex: 1" type="textarea" size="mini" /></div>
             </el-collapse-item>
             <el-collapse-item title="推荐阅读" name="2">
               <el-tabs v-model="activeCommend" type="card" editable @edit="handleCommendTabs">
@@ -89,7 +80,7 @@
             </div>
           </div>
 
-          <div v-if="data.guest && data.guest.length > 0" class="content-box">
+          <div v-if="data.guest && data.guest.name" class="content-box">
             <div class="content-line line-left" />
             <div class="content-line line-right" />
             <div class="content-line line-top" />
@@ -106,12 +97,12 @@
                 </div>
               </div>
 
-              <div v-for="(recItem,index) in data.guest" :key="index" class="content-detail">
-                <div class="item-title">@<span class="author">{{ recItem.name }}</span>：{{ recItem.title }}</div>
-                <div v-if="recItem.content1" class="item-sctitle"><span class="sctitle-detail">张哥寄语</span><span class="deco" /></div>
-                <div v-if="recItem.content1" class="item-content" v-html="recItem.content1" />
-                <div v-if="recItem.content2" class="item-sctitle"><span class="sctitle-detail">精彩速览</span><span class="deco" /></div>
-                <div v-if="recItem.content2" class="item-content" v-html="recItem.content2" />
+              <div class="content-detail">
+                <div class="item-title">@<span class="author">{{ data.guest.name }}</span>：{{ data.guest.title }}</div>
+                <div class="item-sctitle"><span class="sctitle-detail">张哥寄语</span><span class="deco" /></div>
+                <div class="item-content" v-html="data.guest.content1" />
+                <div class="item-sctitle"><span class="sctitle-detail">精彩速览</span><span class="deco" /></div>
+                <div class="item-content" v-html="data.guest.content2" />
               </div>
 
             </div>
@@ -136,8 +127,8 @@
 
               <div v-for="(recItem,index) in data.recommend" :key="index" class="content-detail">
                 <div class="item-title">@<span class="author">{{ recItem.name }}</span>：{{ recItem.title }}</div>
-                <div v-if="recItem.content" class="item-sctitle"><span class="sctitle-detail">上榜理由</span><span class="deco" /></div>
-                <div v-if="recItem.content" class="item-content" v-html="recItem.content" />
+                <div class="item-sctitle"><span class="sctitle-detail">上榜理由</span><span class="deco" /></div>
+                <div class="item-content" v-html="recItem.content" />
               </div>
 
             </div>
@@ -220,20 +211,18 @@ export default {
       dynInputVisible: false,
       dynInputValue: '',
       activeCommend: '1',
-      activeGuest: '1',
-      tabIndexCommend: 2,
-      tabIndexGuest: 2,
+      tabIndex: 2,
       index2: 2,
       index3: 3,
       index4: 4,
       data: {
         countNum: '07',
-        guest: [
+        guest: {
           // name: '十七',
           // title: '2.5w 粉丝，平均播放量 1w+ 的视频号分享',
           // content1: '今天，邀请了一位球友做关于视频号的分享，他从去年 7 月份开始研究视频号，现在粉丝量达到 2.5w+，单视频最大播放量 1700w+，视频平均播放量 1w+，做的非常牛逼。这位球友是 @<span class="author">十七</span>，文中他把自己做视频号的一些思考和心得体会分享出来，希望对也在做视频号的大家有帮助，也希望能给大家起到借鉴参考的意义。',
           // content2: '从一开始的视频封面和描述，到视频内容，到个人简介，再到评论区和底部公众号链接都要做好文案钩子，引导用户完成观看闭环。封面一定是你整个视频最精华的部分或者是你最能表达自己观点的一帧；视频内容就是文案 + 画面，埋悬念、讲故事、自问自答和旁白 4 种方法都适用；简介不用多说，简单明了，有产品的挂产品，再不济也要有一个微信号或公众号；评论区一定要设置自己的神评论，文案号的扎心评论、IP 号的引导评论，2 - 3 个微信号三个赞就置顶了，这样一套完整的闭环就形成了。'
-        ],
+        },
         recommend: [
           // {
           //   name: 'SkyKai',
@@ -271,7 +260,7 @@ export default {
   watch: {
     data: {
       handler: function(val) {
-        const bol1 = !!(val.guest && val.guest.length > 0)
+        const bol1 = !!(val.guest && val.guest.name)
         const bol2 = !!(val.recommend && val.recommend.length > 0)
         const bol3 = !!(val.dynamic && val.dynamic.length > 0)
         const bol4 = !!(val.summary && val.summary.length > 0)
@@ -318,37 +307,9 @@ export default {
     handledynClose(item) {
       this.data.dynamic = this.data.dynamic.filter(tab => tab.title !== item.title)
     },
-    handleGuestTabs(targetName, action) {
-      if (action === 'add') {
-        const newTabName = ++this.tabIndexGuest + ''
-        this.data.guest.push({
-          title: newTabName,
-          name: '',
-          content: '',
-          ID: newTabName
-        })
-        this.activeGuest = newTabName
-      }
-      if (action === 'remove') {
-        const tabs = this.data.guest
-        let activeName = this.activeGuest
-        if (activeName === targetName) {
-          tabs.forEach((tab, index) => {
-            if (tab.ID === targetName) {
-              const nextTab = tabs[index + 1] || tabs[index - 1]
-              if (nextTab) {
-                activeName = nextTab.ID
-              }
-            }
-          })
-        }
-        this.activeGuest = activeName
-        this.data.guest = tabs.filter((tab) => tab.ID !== targetName)
-      }
-    },
     handleCommendTabs(targetName, action) {
       if (action === 'add') {
-        const newTabName = ++this.tabIndexCommend + ''
+        const newTabName = ++this.tabIndex + ''
         this.data.recommend.push({
           title: newTabName,
           name: '',

@@ -49,8 +49,20 @@ export const constantRoutes = [
         meta: { title: '周报海报', icon: 'el-icon-s-home' }
       }
     ]
-
   },
+  // {
+  //   path: '/prize',
+  //   name: 'prize',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'prize',
+  //       name: 'prize',
+  //       component: () => import('@/views/prize/index'),
+  //       meta: { title: '抽奖海报', icon: 'el-icon-s-home' }
+  //     }
+  //   ]
+  // },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
