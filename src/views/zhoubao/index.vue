@@ -207,7 +207,7 @@
         <img class="poster-background" :src="require(`@/assets/images/bg.jpg`)" alt="" srcset="">
       </div>
     </div>
-    <a class="footer-link" href="https://beian.miit.gov.cn/">豫ICP备17035773号-1</a>
+    <a class="footer-link" target="_blank" href="https://beian.miit.gov.cn/">豫ICP备17035773号-1</a>
   </div>
 </template>
 
