@@ -176,10 +176,19 @@
             </div>
           </div>
 
-          <div class="footer">
+          <!-- <div class="footer">
             <div class="code-img"><img :src="data.codeImg" alt=""></div>
             <div class="share-containter">
               <div class="share-title">扫码查看详情</div>
+            </div>
+          </div> -->
+          <div class="footer">
+            <div class="code-img"><img :src="data.codeImg" alt=""></div>
+            <div class="share-containter">
+              <div class="share-title">扫描左侧二维码查看完整内容</div>
+              <div class="share-line" />
+              <div class="share-desc"><span class="author">@帅张和他的朋友们</span> {{ data.countNum.toString().padStart(2, '0') }} 期周报</div>
+              <div class="share-desc">— 星球内容运营组「周报小分队」整理</div>
             </div>
           </div>
 
@@ -703,20 +712,48 @@ export default {
   color: #fff;
   font-weight: bolder;
   font-family: siyuanbold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .code-img {
-    margin: 0 auto;
-    width: 110px;
-    height: 110px;
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
     img {
-      width: 110px;
-      height: 110px;
+      width: 80px;
+      height: 80px;
     }
+  }
+  .share-containter {
+    text-align: left;
   }
   .share-title {
     margin-top: 10px;
     line-height: 25px;
     letter-spacing: 1px;
     font-size: 12px;
+  }
+  .share-title {
+    line-height: 25px;
+    letter-spacing: 1px;
+    font-size: 16px;
+  }
+  .share-line {
+    margin-bottom: 4px;
+    width: 100%;
+    height: 0;
+    border: 1px solid #fff;
+  }
+  .share-desc {
+    line-height: 20px;
+    font-size: 13px;
+  }
+  .author {
+    background-image: -webkit-linear-gradient(top, #fff 0%, #aadeff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    // color: #ffbd4a;
+    -webkit-text-fill-color: transparent;
   }
 }
 .footer-link {
