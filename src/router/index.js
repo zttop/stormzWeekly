@@ -45,7 +45,7 @@ export const constantRoutes = [
       {
         path: 'zhoubao',
         name: 'zhoubao',
-        component: () => import('@/views/zhoubao/index'),
+        component: () => import('@/views/newZhoubao/index'),
         meta: { title: '周报海报', icon: 'el-icon-s-home' }
       }
     ]
