@@ -2,8 +2,6 @@
   <div class="home-container" :class="{'isToJietu': isToJietu}">
     <div class="tooltip-containter">
       <el-row v-if="!isToJietu">
-        <el-col class="tooltip-item" :span="24">第 <el-input-number v-model="data.mounthNum" style="margin: 0 10px;" size="mini" /> 月</el-col>
-        <el-col class="tooltip-item" :span="24">第 <el-input-number v-model="data.dayNum" style="margin: 0 10px;" size="mini" /> 日</el-col>
         <el-col class="tooltip-item" :span="24">第 <el-input-number v-model="data.countNum" style="margin: 0 10px;" size="mini" /> 期</el-col>
         <el-col class="tooltip-item" :span="24">
 
@@ -79,11 +77,9 @@
 
     <div :style="{height: heightVal}" class="poster-containter">
       <div id="poster" ref="posterItem" class="poster-item" :class="{'isToJietu': isToJietu}">
-        <img style="position:absolute; top:0; width: 100%; opacity: .2;" :src="require(`@/assets/images/bg01.png`)" alt="">
-        <img style="position:absolute; bottom:0; width: 100%; opacity: .2;" :src="require(`@/assets/images/bg02.png`)" alt="">
         <div class="item-bgbox">
-          <!-- <img style="position:absolute; top:0; width: 100%; opacity:.5;" :src="require(`@/assets/images/demo3.png`)" alt=""> -->
-
+          <!-- <img style="position:absolute; top:0; width: 100%; opacity:.5;" :src="require(`@/assets/images/demo.png`)" alt=""> -->
+          <img class="poster-background" :src="require(`@/assets/images/new-bg.jpg`)" alt="">
           <div class="poster-bgMore">
             <img class="bg-logo" :src="require(`@/assets/images/logo.png`)" alt="">
             <div class="bg-desc">
@@ -97,45 +93,29 @@
           </div>
         </div>
         <div class="item-containter">
+
           <div class="title-content">
-            <div class="title-line line-top" />
             <div class="title-box">
-
-              <div class="title-name">
-                <div class="title-CH">星球周报</div>
-                <div class="title-EN">PLANET WEEKLY</div>
-              </div>
-
-              <div class="title-count">
-                <div class="title-count-num">
-                  第<span>{{ data.countNum.toString().padStart(2, '0') }}</span>期
-                </div>
-                <div class="title-count-line" />
-                <div class="title-count-date">
-                  {{ data.mounthNum.toString().padStart(2, '0') }} <span style="font-family: cursive, -webkit-body;">/</span> {{ data.dayNum.toString().padStart(2, '0') }}
-                </div>
-              </div>
-
+              <span class="title-item">星球周报<span class="title-count">{{ data.countNum.toString().padStart(2, '0') }}</span>期</span>
             </div>
-            <div class="title-line line-bottom" />
-
           </div>
 
           <div v-if="data.guest && data.guest.length > 0" class="content-box guest">
-            <img style="position: absolute; top: -28px; right: -37px; width: 100px; opacity: .8;" :src="require(`@/assets/images/ball01.png`)" alt="">
+
             <div class="content-title">
-              <img class="title-bg" :src="require(`@/assets/images/titlebg.png`)" alt="">
+              <img :src="require(`@/assets/images/ic-left.png`)" alt="">
               <span class="title">嘉宾分享</span>
+              <img :src="require(`@/assets/images/ic-right.png`)" alt="">
             </div>
 
             <div class="content">
 
               <div v-for="(recItem,index) in data.guest" :key="index" class="content-detail">
                 <div class="item-title">{{ recItem.title }}</div>
-                <div v-if="recItem.content1" class="item-sctitle"><span class="sctitle-detail">「嘉宾简介」</span></div>
-                <div v-if="recItem.content1" class="item-content" v-html="handleHtml(recItem.content1)" />
-                <div v-if="recItem.content2" class="item-sctitle"><span class="sctitle-detail">「内容导读」</span></div>
-                <div v-if="recItem.content2" class="item-content" v-html="handleHtml(recItem.content2)" />
+                <div v-if="recItem.content1" class="item-sctitle"><span class="sctitle-detail">张哥寄语</span></div>
+                <div v-if="recItem.content1" class="item-content" v-html="recItem.content1" />
+                <div v-if="recItem.content2" class="item-sctitle"><span class="sctitle-detail">精彩速览</span></div>
+                <div v-if="recItem.content2" class="item-content" v-html="recItem.content2" />
               </div>
 
             </div>
@@ -143,28 +123,30 @@
           </div>
 
           <div v-if="data.recommend && data.recommend.length > 0" class="content-box">
-            <img style="position: absolute; top: 0; left: -30px; width: 60px; opacity: .8;" :src="require(`@/assets/images/ball02.png`)" alt="">
+
             <div class="content-title">
-              <img class="title-bg" :src="require(`@/assets/images/titlebg.png`)" alt="">
+              <img :src="require(`@/assets/images/ic-left.png`)" alt="">
               <span class="title">推荐阅读</span>
+              <img :src="require(`@/assets/images/ic-right.png`)" alt="">
             </div>
 
             <div class="content">
 
               <div v-for="(recItem,index) in data.recommend" :key="index" class="content-detail">
                 <div class="item-title">{{ recItem.title }}</div>
-                <div v-if="recItem.content" class="item-sctitle"><img class="deco" :src="require('@/assets/images/ic-zan.png')" alt=""><span class="sctitle-detail">上榜理由</span></div>
-                <div v-if="recItem.content" class="item-content" v-html="handleHtml(recItem.content)" />
+                <div v-if="recItem.content" class="item-sctitle"><img class="deco" :src="require('@/assets/images/ic-zan.png')" alt=""><span class="sctitle-detail recommend-item-sctitle">上榜理由</span></div>
+                <div v-if="recItem.content" class="item-content" v-html="recItem.content" />
               </div>
 
             </div>
           </div>
 
-          <div v-if="data.dynamic && data.dynamic.length > 0" class="content-box dynamic">
-            <img style="position: absolute; top: 50%; transform: translateY(-50%); right: -30px; width: 60px; opacity: .8;" :src="require(`@/assets/images/ball03.png`)" alt="">
+          <div v-if="data.dynamic && data.dynamic.length > 0" class="content-box">
+
             <div class="content-title">
-              <img class="title-bg" :src="require(`@/assets/images/titlebg.png`)" alt="">
+              <img :src="require(`@/assets/images/ic-left.png`)" alt="">
               <span class="title">星球周动态</span>
+              <img :src="require(`@/assets/images/ic-right.png`)" alt="">
             </div>
             <div class="content">
 
@@ -178,9 +160,11 @@
           <div v-if="data.summary && data.summary.length > 0" class="content-box">
 
             <div class="content-title">
-              <img class="title-bg" :src="require(`@/assets/images/titlebg.png`)" alt="">
+              <img :src="require(`@/assets/images/ic-left.png`)" alt="">
               <span class="title">本周专栏汇总</span>
+              <img :src="require(`@/assets/images/ic-right.png`)" alt="">
             </div>
+
             <div class="content">
 
               <div class="content-detail content-all">
@@ -192,6 +176,12 @@
             </div>
           </div>
 
+          <!-- <div class="footer">
+            <div class="code-img"><img :src="data.codeImg" alt=""></div>
+            <div class="share-containter">
+              <div class="share-title">扫码查看详情</div>
+            </div>
+          </div> -->
           <div class="footer">
             <div class="code-img"><img :src="data.codeImg" alt=""></div>
             <div class="share-containter">
@@ -228,8 +218,6 @@ export default {
       index3: 3,
       index4: 4,
       data: {
-        mounthNum: '01',
-        dayNum: '01',
         countNum: '07',
         guest: [
           // name: '十七',
@@ -304,13 +292,6 @@ export default {
     }
   },
   methods: {
-    handleHtml(str) {
-      console.log(str.replace(/\n/g, '<div class="space-box"></div>'), '-=-=')
-      let restr = str.replace(/\n/g, '<div class="space-box"></div>')
-      restr = restr.replace(/<bb>/g, '<div class="author">')
-      restr = restr.replace(/<\/bb>/g, '</div>')
-      return restr
-    },
     showdynInput() {
       this.dynInputVisible = true
       this.$nextTick(_ => {
@@ -459,7 +440,6 @@ export default {
     width: 820px;
   }
   .poster-containter {
-    box-sizing: content-box;
     width: 50%;
     padding: 0 10px;
     display: flex;
@@ -505,8 +485,7 @@ export default {
   margin: 0 auto;
   position: relative;
   width: 400px;
-  background-image: -webkit-linear-gradient( 0deg, rgb(1,14,63) 0%, rgb(9,28,100) 50%, rgb(1,14,63) 100%);
-  // background-color: #010e3f;
+  background-color: #010e3f;
   overflow: hidden;
   &.isToJietu{
     transform: scale(2,2);
@@ -514,20 +493,29 @@ export default {
   }
 }
 .item-bgbox {
-  padding: 0 28px;
-  margin-top: 38px;
   position: relative;
+  .poster-background {
+    width: 100%;
+  }
   .poster-bgMore {
+    position: absolute;
+    top: 37px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   .bg-logo {
+    // position: absolute;
+    // left: 7%;
+    margin-left: 7%;
     width: 11%;
   }
   .bg-desc {
-    margin-right: -9%;
+    // position: absolute;
+    // top: .8%;
+    // right: -.5%;
+    margin-right: -.5%;
     color: #fff;
     font-family: siyuanblod;
     font-size: 12px;
@@ -567,102 +555,58 @@ export default {
   }
 }
 .item-containter {
-  // margin-top: -100px;
+  margin-top: -100px;
   position: relative;
   z-index: 1;
-  padding: 40px 28px 22px;
+  padding: 28px 22px;
   .iten-content {
     width: 100%;
     position: relative;
   }
 }
 .title-content {
-  .title-line {
-    background-image: -webkit-linear-gradient( 90deg, rgb(155,215,253) 0%, rgb(255,255,255) 100%);
-    height: 1px;
-    opacity: .5;
-  }
   .title-box {
-    margin: 12px auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .title-CH {
-    background-image: -webkit-linear-gradient(top, #fff 0%,#fff 30%, #9bd7fd 100%);
+    font-size: 45px;
+    margin-top: -2px;
+    background-image: -webkit-linear-gradient(top, #fff 0%, #aadeff 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .title-item {
+    width: 100%;
     text-align: center;
     font-family: siyuanblod;
     font-weight: 900;
-    font-size: 44px;
-  }
-  .title-EN {
-    background-image: -webkit-linear-gradient(top, #fff 0%, #fff 30%, #9bd7fd 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: siyuannormal;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 5.2px;
-    text-align: center;
-    margin-left: 4px;
   }
   .title-count {
-    font-family: siyuannormal;
-    display: inline-block;
-    font-weight: 900;
-    font-size: 19px;
-  }
-  .title-count-num,
-  .title-count-date {
-    background-image: -webkit-linear-gradient(top, #fff 0%, #fff 30%, #9bd7fd 100%);
+    background-image: -webkit-linear-gradient(top, #fff 0%, #aadeff 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-family: siyuanblod;
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: 900;
   }
-  .title-count-num span {
-    font-size: 25px;
-    margin: 0 2px;
-    letter-spacing: 1px;
-    text-align: center;
-  }
-  .title-count-date {
-    letter-spacing: 1px;
-    text-align: center;
-    font-size: 20px;
-  }
-  .title-count-line {
-    background-image: -webkit-linear-gradient( 90deg, rgb(155,215,253) 0%, rgb(255,255,255) 100%);
-    height: 1px;
-    opacity: .5;
-    margin: 3px auto;
-  }
-
 }
 
 .content-box {
   position: relative;
-  margin-top: 60px;
+  margin-top: 20px;
   .content-title {
-    z-index: 1;
-    position: relative;
-    text-align: center;
-    img.title-bg {
-      width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      height: 1px;
     }
     .title {
-      margin-top: -2px;
-      display: inline-block;
-      text-align: center;
-      width: 70%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      margin: 0 5px;
       font-weight: 900;
       color: #fff;
       font-size: 23px;
@@ -672,27 +616,19 @@ export default {
     position: absolute;
   }
   .content {
-    background-image: url('../../assets/images/contentbg.png');
-    background-size: contain;
-    // border: 1px solid rgba(255, 255, 255, .5);
+    border: 1px solid rgba(255, 255, 255, .5);
     border-radius: 6px;
-    padding: 45px 15px 20px 15px;
-    margin: -29px auto 20px auto;
+    padding: 10px;
+    margin: 20px auto;
     position: relative;
   }
-}
-.dynamic .content .item-title {
-  font-family: siyuannormal;
-  font-size: 14px;
-  font-weight: 500;
-  color: #352d29;
 }
 .guest .content .content-detail:nth-of-type(2) .item-title:first-child {
   margin-top: 12px;
 }
 .content {
   .content-detail {
-    color: #352d29;
+    color: #fff;
     padding-left: 9px;
     padding-right: 9px;
     padding-bottom: 12px;
@@ -704,34 +640,35 @@ export default {
 .content-detail {
   line-height: 20px;
   letter-spacing: 1px;
-  text-align: center;
   .item-title {
-    // margin-left: -3px;
+    margin-left: -3px;
     font-family: siyuanbold;
     font-size: 16px;
     line-height: 25px;
     text-align: justify;
     font-weight: 900;
-    color: #002b97;
+    background-image: -webkit-linear-gradient(top, #fff 0%, #aadeff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-top: 6px;
     .white-word {
-      font-family: siyuannormal;
-      font-weight: 400;
-      color: #352d29;
+      font-weight: 500;
+      color: #fff;
+      background-image: -webkit-linear-gradient(top, #fff 0%, #fff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
   &.content-all .item-title:not(:first-child) {
-    margin-top: 10px;
+    margin-top: 6px;
   }
   .item-sctitle {
     font-family: siyuanbold;
     margin-top: 16px;
     margin-bottom: 10px;
     position: relative;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
   }
   .deco {
     width: 13px;
@@ -742,25 +679,34 @@ export default {
     text-align: justify;
     position: relative;
     z-index: 1;
-    font-size: 15px;
+    font-size: 14.8px;
     display: inline-block;
-    margin-left: -8px;
+    margin-left: -3px;
     font-weight: 900;
-    color: #002b97;
+    // mask-image: -webkit-gradient(linear, 0 top, 0 bottom, from(#fff), to(#aadeff));
+    // -webkit-mask-image: -webkit-gradient(linear, 0 top, 0 bottom, from(#fff), to(#aadeff));
+    background-image: -webkit-linear-gradient(top, #fff 0%, #aadeff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    &.recommend-item-sctitle {
+      color: #fff;
+      background-image: -webkit-linear-gradient(top, #fff 0%, #fff 100%);
+    }
   }
   .item-content {
     font-family: siyuannormal;
     text-align: justify;
-    font-size: 14px;
-    color: #352d29;
-    // margin-left: -3px;
+    font-size: 15px;
+    color: #fff;
+    margin-left: -3px;
     margin-top: -3px;
-    line-height: 26px;
+    line-height: 22px;
   }
 }
 
 .footer {
-  margin: 45px auto 38px auto;
+  margin: 45px auto 10px auto;
   padding: 0 15px;
   text-align: center;
   color: #fff;
@@ -785,13 +731,11 @@ export default {
     margin-top: 10px;
     line-height: 25px;
     letter-spacing: 1px;
-    text-align: center;
     font-size: 12px;
   }
   .share-title {
     line-height: 25px;
     letter-spacing: 1px;
-    text-align: center;
     font-size: 16px;
   }
   .share-line {
@@ -802,8 +746,7 @@ export default {
   }
   .share-desc {
     line-height: 20px;
-    font-size: 14px;
-    width: 112%;
+    font-size: 13px;
   }
   .author {
     background-image: -webkit-linear-gradient(top, #fff 0%, #aadeff 100%);
@@ -820,18 +763,9 @@ export default {
   width: 100%;
   text-align: center;
 }
-
 </style>
 
 <style lang="scss">
-
-.space-box {
-  margin-top: 10px;
-}
-.author {
-  color: #002b97;
-}
-
 .el-tabs__new-tab {
   color: #000;
   border-color: #000;
