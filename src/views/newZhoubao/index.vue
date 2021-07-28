@@ -307,8 +307,8 @@ export default {
     handleHtml(str) {
       console.log(str.replace(/\n/g, '<div class="space-box"></div>'), '-=-=')
       let restr = str.replace(/\n/g, '<div class="space-box"></div>')
-      restr = restr.replace(/<bb>/g, '<div class="author">')
-      restr = restr.replace(/<\/bb>/g, '</div>')
+      restr = restr.replace(/<bb>/g, '<span class="author">')
+      restr = restr.replace(/<\/bb>/g, '</span>')
       return restr
     },
     showdynInput() {
